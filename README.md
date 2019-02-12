@@ -16,6 +16,7 @@
 - V: vision ward
 - B: recall
 - P: passive
+- %: rune
 - A: attack
 - ~~AA: auto attack (deprecated)~~
 - ~~AM: attack move (deprecated)~~
@@ -34,21 +35,21 @@
 
 
 ## Syntax
-- [: cast start
-- ]: cast end
-- ?<1.5>: seconds duration to hold
-- ?<1.5>[]: seconds duration to hold with actions in between
-- <exp>: expire duration
-- <max>: hold for maximum duration
-- <min>: hold for minimum duration
-- <cxl>: hold, then cancel
-- <>: hold for indeterminate duration
-- <1.5>: seconds duration to delay
-- (1.5): seconds time marker
-- /: weave in any order
-- *: weave in specific order
-- &: press at same time Q1&Q2
-- \_comment here\_: comments surrounded by underscores
+- `[`: cast start
+- `]`: cast end
+- `?<1.5>`: seconds duration to hold
+- `?<1.5>[]`: seconds duration to hold with actions in between
+- `<exp>`: expire duration
+- `<max>`: hold for maximum duration
+- `<min>`: hold for minimum duration
+- `<cxl>`: hold, then cancel
+- `<>`: hold for indeterminate duration
+- `<1.5>`: seconds duration to delay
+- `(1.5)`: seconds time marker
+- `/`: weave in any order
+- `*`: weave in specific order
+- `&: press at same time Q1&Q2
+- `_comment here_`: comments surrounded by underscores
 - X: alt f4
 
 - ~~K: knockup state (deprecated)~~
@@ -59,6 +60,7 @@
 
 - karma root combo: `W[R] Q`
 - shen E-flash: `E[F]`
+- shen E-flash long combo: `E[F] M Q&W S A/ K`
 - shen flash-E: `F E`
 - ahri: `E Q W`
 - alistar: `W[Q] E`
@@ -67,11 +69,17 @@
 - riven fast combo: `A1[Q1 _activate Q1 after A1 damage_] A2[Q2] A3[Q3]`
 - vi Q: `Q<> Q<1> Q<1.5> Q<max> Q<min> Q<exp>`
 - lee sin: `V W Q1 Q2 F R`
-
+- brand: `E Q ~W`
+- rakan: `E1 E2 R[F W] Q`
+- katarina: `Q W[M] E E`
+- xayah: `W P A1 A2 A3 Q[P A[E P]] A/`
+- thresh: `hexF<max> Q1<max> Q2 R E`
+- thresh escape: `W1 W2[F*M]`
+- darius: `E W A Q[M/]`
+- zed: `W1[E&Q W2 %] A Iduskblade&P`
 
 - WQ animation cancel yasuo: `Q1 Q2 W[Q3]`
 - beyblade yasuo: `Q1 Q2 E[Q3[F]]`
 - airblade yasuo: `Q1 Q2 Q3[E[Q1[R]]] Q2`
-- airblade yasuo: `K[E[Q1[R]]] Q2`
 - keyblade yasuo: `Q1 Q2 E[Q3[F A E[Q1[R]]]]`
 - keyblade yasuo v2: `Q1 Q2 E<cxl>[Q3<cxl>[F]] A E<cxl>[Q1<cxl>[R]] Q2 Q3`
