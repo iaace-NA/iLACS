@@ -137,6 +137,12 @@ function multiplyString(text, num) {
 	for (let i = 0; i < num; ++i) answer += text;
 	return answer;
 }
+if (document) {
+	document.getElementById('b1').onclick = updateWebsite;
+}
+function updateWebsite() {
+	document.getElementById('o1').value = decodeToEnglish(document.getElementById('i1').value);
+}
 //console.log(decodeToEnglish("Q1 Q2 E[Q3[F A E[Q1[R]]]]"));
 /*
 console.log("airblade yasuo\n" + decodeToEnglish("Q1 Q2 Q3[E[Q1[R]]] Q2"));
