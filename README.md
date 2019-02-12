@@ -24,7 +24,9 @@
 - M: move character
 - X: exit game
 - L: go AFK
-- T"abc": type abc in chat
+- "abc": type abc in chat
+- T: teammate's abilities
+- T1: teammate 1's abilities
 - D: die
 - K: get a kill
 - KK: double kill
@@ -63,7 +65,7 @@
 - ~: unspecified CC
 
 ## Examples:
-- the ragequit: `??? T"/all open mid" @15mins G ^(L|X)`
+- the ragequit: `??? "/all open mid" @15mins G ^(L|X)`
 - karma root combo: `W[R] Q`
 - shen E-flash: `E[F]`
 - shen E-flash long combo: `E[F] M Q&W S A/ K`
