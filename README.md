@@ -68,13 +68,13 @@
 
 ## Examples:
 - the ragequit: `??? "/all open mid" @15mins G ^(L|X)`
-- karma root combo: `W[R] Q`
+- karma root combo: `W[~R[Q]]`
 - shen E-flash: `E[F]`
 - shen E-flash long combo: `E[F] M Q&W S A/ K`
 - shen flash-E: `F E`
 - ahri: `E Q W`
 - alistar: `W[Q] E`
-- wukong: `E Q A W`
+- wukong: `E Q A W<>[M/]`
 - amumu: `W+ Q E/A W-`
 - riven fast combo: `A1[Q1 _activate Q1 after A1 damage_] A2[Q2] A3[Q3]`
 - vi Q: `Q<> Q<1> Q<1.5> Q<max> Q<min> Q<exp>`
@@ -86,7 +86,7 @@
 - thresh: `hexF<max> Q1<max> Q2 R E`
 - thresh escape: `W1 W2[F*M]`
 - darius: `E W A Q[M/]`
-- zed: `W1[E&Q W2 %] A Iduskblade&P`
+- zed: `W1[E&Q&% W2] A Iduskblade&P`
 - lissandra self ult engage: `E1[E2] W&Q R$`
 - lissandra ult engage: `E1[E2] W&Q R Izhonyas`
 - lissandra fake E: `E1<exp>[M/ !E2]`
