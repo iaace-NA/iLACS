@@ -85,7 +85,7 @@ function decodeToEnglish(text) {//text is iLACS
 		else if (text[i] === "<") {//beginning of duration
 			let hold = true;//set to true if not a delay
 			if (i - 1 < 0 || text[i - 1] == " ") hold = false;//is a delay
-			answer += multiplyString("\t", tab_level) + " and " + decodeDuration(text.substring(i, text.indexOf(">", i + 1) + 1));
+			answer += (hold ? "" : multiplyString("\t", tab_level)) + " " + decodeDuration(text.substring(i, text.indexOf(">", i + 1) + 1), hold);
 			i = text.indexOf(">", i + 1);
 		}
 		else if (text[i] === "(") {//beginning of a time duration
@@ -105,17 +105,19 @@ function decodeToEnglish(text) {//text is iLACS
 	return answer;
 }
 function decodeDuration(text, hold) {
-	if (text == "<exp>") return "hold until it expires";
-	else if (text == "<max>") return "hold for maximum duration";
-	else if (text == "<min>") return "hold for minimum duration";
-	else if (text == "<cxl>") return "hold, then cancel";
-	else if (text == "<>") return "hold for any duration";
+	if (text == "<exp>") return "and hold until it expires.";
+	else if (text == "<max>") return "and hold for maximum duration.";
+	else if (text == "<min>") return "and hold for minimum duration.";
+	else if (text == "<cxl>") return "and hold while preparing to cancel.";
+	else if (text == "<>") return "and hold for any duration.";
 	else {
 		if (text[0] !== "<" || text[text.length - 1] !== ">") throw new Error("decodeDuration() invalid entry missing opening or closing angle brackets:\n" + text);
 		else {//opens and closes with angle brackets
 			const duration = parseFloat(text.substring(1, text.length - 1));
 			if (isNaN(duration)) throw new Error("decodeDuration() invalid duration:\n" + text);
-			else return "hold for " + duration + " seconds";
+			else {
+				return (hold ? "and hold" : "wait") + " for " + duration + " seconds.";
+			}
 		}
 	}
 }
