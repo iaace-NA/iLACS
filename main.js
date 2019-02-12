@@ -25,7 +25,13 @@ const dictionary = {
 		F: "FLASH",
 		S: "summoner SPELL",
 		//SS: "summoner spell",
-		M: "MOVE"
+		M: "MOVE",
+		K: "target KNOCKUP",
+		"~": "target is CC'd",
+		C: "CANCEL action",
+		X: "EXIT game",
+		T: "TYPE in chat",
+		G: "SURRENDER"
 	},
 	syntax: {//potentially multi character
 		" ": " then\n",//end
@@ -50,6 +56,11 @@ function decodeToEnglish(text) {//text is iLACS
 		else if (dictionary.special_abilities[text[i]]) {
 			//start of a special ability
 			answer += dictionary.special_abilities[text[i]];
+			if (text[i] === "T") {
+				++i;
+				answer += multiplyString("\t", 0) + " \"" + decodeComment(text.substring(i, text.indexOf("\"", i + 1) + 1), "\"") + "\"";
+				i = text.indexOf("\"", i + 1);
+			}
 		}
 		else if (dictionary.syntax[text[i]]) {
 			//start of syntax
@@ -73,12 +84,16 @@ function decodeToEnglish(text) {//text is iLACS
 		else if (text[i] === "<") {//beginning of duration
 			let hold = true;//set to true if not a delay
 			if (i - 1 < 0 || text[i - 1] == " ") hold = false;//is a delay
-			answer += multiplyString("\t", tab_level) + " and " + decodeDuration(text.substring(i, text.indexOf(">", i) + 1));
-			i = text.indexOf(">", i);
+			answer += multiplyString("\t", tab_level) + " and " + decodeDuration(text.substring(i, text.indexOf(">", i + 1) + 1));
+			i = text.indexOf(">", i + 1);
 		}
 		else if (text[i] === "(") {//beginning of a time duration
-			answer += multiplyString("\t", tab_level) + " and " + decodeTimeMarker(text.substring(i, text.indexOf(")", i) + 1));
-			i = text.indexOf(")", i);
+			answer += multiplyString("\t", tab_level) + " and " + decodeTimeMarker(text.substring(i, text.indexOf(")", i + 1) + 1));
+			i = text.indexOf(")", i + 1);
+		}
+		else if (text[i] === "_") {//beginning of a note/comment
+			answer += multiplyString("\t", 0) + " NOTE: " + decodeComment(text.substring(i, text.indexOf("_", i + 1) + 1), "_");
+			i = text.indexOf("_", i + 1);
 		}
 		else {
 			answer += text[i];
@@ -92,6 +107,7 @@ function decodeDuration(text, hold) {
 	if (text == "<exp>") return "hold until it expires";
 	else if (text == "<max>") return "hold for maximum duration";
 	else if (text == "<min>") return "hold for minimum duration";
+	else if (text == "<cxl>") return "hold, then cancel";
 	else if (text == "<>") return "hold for any duration";
 	else {
 		if (text[0] !== "<" || text[text.length - 1] !== ">") throw new Error("decodeDuration() invalid entry missing opening or closing angle brackets:\n" + text);
@@ -110,6 +126,12 @@ function decodeTimeMarker(text) {
 		else return "at " + duration + " seconds";
 	}
 }
+function decodeComment(text, surrounder) {
+	if (text[0] !== surrounder || text[text.length - 1] !== surrounder) throw new Error("decodeComment() invalid entry missing opening or closing syntax:\n" + text);
+	else {//opens and closes with underscore
+		return text.substring(1, text.length - 1);
+	}
+}
 function multiplyString(text, num) {
 	let answer = "";
 	for (let i = 0; i < num; ++i) answer += text;
@@ -124,15 +146,18 @@ console.log("keyblade yasuo\n" + decodeToEnglish("Q1 Q2 E[Q3[F A E[Q1[R]]]]"));
 console.log("\n\n\n");
 console.log("keyblade yasuo v2\n" + decodeToEnglish("Q1 Q2 E[Q3[F]] A E[Q1[R]]"));
 console.log("\n\n\n");
-console.log("vi Q\n" + decodeToEnglish("Q<> Q<1>[V] Q<1.5>[ V] Q<max>[V ] Q<min>[ V ] Q<exp>"));
+console.log("vi Q\n" + decodeToEnglish("Q<cxl>[C] Q<1>[V] Q<1.5>[V] Q<max>[V] Q<min>[V] Q<exp>"));
 
-/*
+
 console.log("\n\n\n");
-console.log(decodeToEnglish("W[Q] E"));
+console.log("alistar combo\n" + decodeToEnglish("W[Q] E"));
+console.log("\n\n\n");
+console.log("lee sin combo\n" + decodeToEnglish("V W1 Q1 Q2 F R W2"));
 console.log("\n\n\n");
 console.log(decodeToEnglish("W+ Q E/A W-"));
 console.log("\n\n\n");
 console.log(decodeToEnglish("Q1 Q2 W[Q3]"));
 console.log("\n\n\n");
-console.log(decodeToEnglish("A1[Q1] A2[Q2] A3[Q3]"));
-*/
+console.log("riven fast combo\n" + decodeToEnglish("A1[Q1 _activate Q1 after A1 damage_] A2[Q2] A3[Q3]"));
+console.log("\n\n\n");
+console.log("the ragequit\n" + decodeToEnglish("T\"open mid\" G@15mins X"))
