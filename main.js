@@ -30,7 +30,7 @@ const dictionary = {
 		"~": " (while) target is CC'd, ",
 		C: "CANCEL action",
 		X: "EXIT the game",
-		T: "TYPE in chat",
+		"\"": "TYPE in chat",
 		G: "SURRENDER",
 		D: "DIE",
 		"%": "proc RUNES",
@@ -53,7 +53,8 @@ const dictionary = {
 		"$": " as self cast",
 		"@": "at time ",
 		"!": "do NOT ",
-		"^": "recommended: "
+		"^": "recommended: ",
+		"T": "teammate "
 	}
 };
 function decodeToEnglish(text) {//text is iLACS
@@ -88,8 +89,7 @@ function decodeToEnglish(text) {//text is iLACS
 					}
 					--i;
 				}
-				if (text[i] === "T") {
-					++i;
+				if (text[i] === "\"") {
 					answer += multiplyString("\t", 0) + " \"" + decodeComment(text.substring(i, text.indexOf("\"", i + 1) + 1), "\"") + "\"";
 					i = text.indexOf("\"", i + 1);
 				}
@@ -183,9 +183,22 @@ if (document) {
 	document.getElementById('b1').onclick = updateWebsite;
 	document.getElementById('i1').onkeyup = updateWebsite;
 	document.getElementById('i1').onchange = updateWebsite;
+	document.getElementById('i1').value = getParameterByName("input");
+	updateWebsite();
 }
 function updateWebsite() {
 	document.getElementById('o1').value = decodeToEnglish(document.getElementById('i1').value);
+	const url = "https://supportbot.tk/f/ilacs_t.html?input=" + encodeURIComponent(document.getElementById('i1').value);
+	document.getElementById('d1').innerHTML = "URL to current translation: <a href=\"" + url + "\">" + url + "</a>";
+}
+function getParameterByName(name, url) {
+	if (!url) url = window.location.href;
+	name = name.replace(/[\[\]]/g, "\\$&");
+	var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+		results = regex.exec(url);
+	if (!results) return null;
+	if (!results[2]) return '';
+	return decodeURIComponent(results[2].replace(/\+/g, " "));
 }
 //console.log(decodeToEnglish("Q1 Q2 E[Q3[F A E[Q1[R]]]]"));
 /*
