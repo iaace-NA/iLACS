@@ -25,8 +25,6 @@
 - X: exit game
 - L: go AFK
 - "abc": type abc in chat
-- T: teammate's abilities
-- T1: teammate 1's abilities
 - D: die
 - K: get a kill
 - KK: double kill
@@ -50,11 +48,16 @@
 - `<cxl>`: hold, then cancel
 - `<>`: hold for indeterminate duration
 - `<1.5>`: seconds duration to delay (relative time)
-- `@1.5`: seconds marker (absolute time)
+- `@`: at
 - `/`: weave in any order
 - `*`: weave in specific order
 - `&`: press at same time Q1&Q2
 - `|`: or
+- `U`: until
+- `T`: teammate
+- `T1`: teammate 1
+- `O`: opponent
+- `O1`: opponent 1
 - `Q$`: self cast Q
 - `!Q`: do not press Q
 - `^Q`: it is recommended to press Q
