@@ -63,7 +63,7 @@
 - ahri: `E Q W`
 - alistar: `W[Q] E`
 - wukong: `E Q A W`
-- amumu: `W+ Q E*A W-`
+- amumu: `W+ Q E/A W-`
 - riven fast combo: `A1[Q1 _activate Q1 after A1 damage_] A2[Q2] A3[Q3]`
 - vi Q: `Q<> Q<1> Q<1.5> Q<max> Q<min> Q<exp>`
 - lee sin: `V W Q1 Q2 F R`
