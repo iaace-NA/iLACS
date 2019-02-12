@@ -54,7 +54,7 @@
 
 all other english in lowercase
 
-Examples:
+## Examples:
 
 - karma root combo: `W[R] Q`
 - shen E-flash: `E[F]`
