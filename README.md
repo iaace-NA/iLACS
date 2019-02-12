@@ -23,11 +23,16 @@
 - S1/S2: summoner spell 1, summoner spell 2
 - M: move character
 - X: exit game
+- L: go AFK
 - T"abc": type abc in chat
 - D: die
 - K: get a kill
 - G: forfeit (/ff, /surrender)
 - C: cancel action
+- .: stop command
+- ?: ping map
+- ??: MIA ping
+- ????????: MIA ping
 
 
 ## Syntax
@@ -45,8 +50,10 @@
 - `/`: weave in any order
 - `*`: weave in specific order
 - `&`: press at same time Q1&Q2
+- `|`: or
 - `Q$`: self cast Q
 - `!Q`: do not press Q
+- `^Q`: it is recommended to press Q
 - `()`: optional actions
 - `_comment here_`: comments surrounded by underscores
 - X: alt f4
@@ -54,7 +61,7 @@
 - ~: unspecified CC
 
 ## Examples:
-
+- the ragequit: `??? T"/all open mid" @15mins G ^(L|X)`
 - karma root combo: `W[R] Q`
 - shen E-flash: `E[F]`
 - shen E-flash long combo: `E[F] M Q&W S A/ K`
