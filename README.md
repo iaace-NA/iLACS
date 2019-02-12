@@ -80,12 +80,12 @@
 - vi Q: `Q<> Q<1> Q<1.5> Q<max> Q<min> Q<exp>`
 - lee sin: `V W Q1 Q2 F R`
 - brand: `E Q ~W`
-- rakan: `E1 E2 R[F W] Q`
+- rakan: `E1 E2 R[F ~W] Q`
 - katarina: `Q W[M] E E`
 - xayah: `W P A1 A2 A3 Q[P A[E P]] A/`
 - thresh: `hexF<max> Q1<max> Q2 R E`
-- thresh escape: `W1 W2[F*M]`
-- darius: `E W A Q[M/]`
+- thresh escape: `W1 TW2[F M/]`
+- darius: `E W % A Q[M/]`
 - zed: `W1[E&Q&% W2] A Iduskblade&P`
 - lissandra self ult engage: `E1[E2] W&Q R$`
 - lissandra ult engage: `E1[E2] W&Q R Izhonyas`
