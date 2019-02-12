@@ -18,7 +18,7 @@ const dictionary = {
 		I: "use ITEM",
 		V: "place WARD",
 		B: "activate RECALL",
-		P: "use PASSIVE",
+		P: "proc PASSIVE",
 		A: "auto ATTACK",
 		//AA: "auto attack",
 		//AM: "attack move",
@@ -32,7 +32,8 @@ const dictionary = {
 		X: "EXIT game",
 		T: "TYPE in chat",
 		G: "SURRENDER",
-		D: "DIE"
+		D: "DIE",
+		"%": "proc RUNES"
 	},
 	syntax: {//potentially multi character
 		" ": " then\n",//end
@@ -80,6 +81,7 @@ function decodeToEnglish(text) {//text is iLACS
 			if (text[i] === "]") --tab_level;
 			if (text[i] === " ") answer += dictionary.syntax[text[i]] + multiplyString("\t", tab_level);
 			else if (text[i] === "]") answer += "\n" + multiplyString("\t", tab_level) + dictionary.syntax[text[i]] + holds.pop() + ".";
+			else if (text[i] === "/" && text[i + 1] === " ") answer += " spam";
 			else answer += dictionary.syntax[text[i]];
 		}
 		else if (text[i] === "<") {//beginning of duration
@@ -89,7 +91,7 @@ function decodeToEnglish(text) {//text is iLACS
 			i = text.indexOf(">", i + 1);
 		}
 		else if (text[i] === "(") {//beginning of a time duration
-			answer += multiplyString("\t", tab_level) + " and " + decodeTimeMarker(text.substring(i, text.indexOf(")", i + 1) + 1));
+			answer += multiplyString("\t", tab_level) + " (and) " + decodeTimeMarker(text.substring(i, text.indexOf(")", i + 1) + 1));
 			i = text.indexOf(")", i + 1);
 		}
 		else if (text[i] === "_") {//beginning of a note/comment
@@ -106,17 +108,17 @@ function decodeToEnglish(text) {//text is iLACS
 }
 function decodeDuration(text, hold) {
 	if (text == "<exp>") return "and hold until it expires.";
-	else if (text == "<max>") return "and hold for maximum duration.";
-	else if (text == "<min>") return "and hold for minimum duration.";
+	else if (text == "<max>") return "and keep for maximum duration.";
+	else if (text == "<min>") return "and keep for minimum duration.";
 	else if (text == "<cxl>") return "and hold while preparing to cancel.";
-	else if (text == "<>") return "and hold for any duration.";
+	else if (text == "<>") return "and keep for any duration.";
 	else {
 		if (text[0] !== "<" || text[text.length - 1] !== ">") throw new Error("decodeDuration() invalid entry missing opening or closing angle brackets:\n" + text);
 		else {//opens and closes with angle brackets
 			const duration = parseFloat(text.substring(1, text.length - 1));
 			if (isNaN(duration)) throw new Error("decodeDuration() invalid duration:\n" + text);
 			else {
-				return (hold ? "and hold" : "wait") + " for " + duration + " seconds.";
+				return (hold ? "and keep" : "wait") + " for " + duration + " seconds.";
 			}
 		}
 	}
@@ -142,6 +144,8 @@ function multiplyString(text, num) {
 }
 if (document) {
 	document.getElementById('b1').onclick = updateWebsite;
+	document.getElementById('i1').onkeyup = updateWebsite;
+	document.getElementById('i1').onchange = updateWebsite;
 }
 function updateWebsite() {
 	document.getElementById('o1').value = decodeToEnglish(document.getElementById('i1').value);
