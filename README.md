@@ -27,6 +27,7 @@
 - M: move character
 - E: exit game
 - T"abc": type abc in chat
+- D: die
 - G: forfeit (/ff, /surrender)
 
 

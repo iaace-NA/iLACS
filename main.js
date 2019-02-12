@@ -31,7 +31,8 @@ const dictionary = {
 		C: "CANCEL action",
 		X: "EXIT game",
 		T: "TYPE in chat",
-		G: "SURRENDER"
+		G: "SURRENDER",
+		D: "DIE"
 	},
 	syntax: {//potentially multi character
 		" ": " then\n",//end
