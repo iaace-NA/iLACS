@@ -5,7 +5,7 @@
 - W; W1, W2,..
 - E; E1, E2,..
 - R; R1, R2,..
-- Q*: repeat Q for an indeterminate amount of times
+- Q*!: repeat Q for an indeterminate amount of times
 - Qs: for all Q activations
 - Qx: for a indeterminate Q activation
 - Q+: activate Q passive
@@ -25,10 +25,12 @@
 - S1/S2: summoner spell 1, summoner spell 2
 - ~~S1.1 S1.2: ss activation 1, ss activation 2 (deprecated)~~
 - M: move character
-- E: exit game
+- X: exit game
 - T"abc": type abc in chat
 - D: die
+- K: get a kill
 - G: forfeit (/ff, /surrender)
+- C: cancel action
 
 
 ## Syntax
@@ -49,9 +51,9 @@
 - \_comment here\_: comments surrounded by underscores
 - X: alt f4
 
-- K: knockup state
+- ~~K: knockup state (deprecated)~~
 - ~~CC: unspecified CC (deprecated)~~
-- C: unspecified CC
+- ~: unspecified CC
 
 all other english in lowercase
 
