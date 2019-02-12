@@ -18,13 +18,9 @@
 - P: passive
 - %: rune
 - A: attack
-- ~~AA: auto attack (deprecated)~~
-- ~~AM: attack move (deprecated)~~
 - F: flash
 - S: summoner spell
-- ~~SS: summoner spell (deprecated)~~
 - S1/S2: summoner spell 1, summoner spell 2
-- ~~S1.1 S1.2: ss activation 1, ss activation 2 (deprecated)~~
 - M: move character
 - X: exit game
 - T"abc": type abc in chat
@@ -45,15 +41,16 @@
 - `<cxl>`: hold, then cancel
 - `<>`: hold for indeterminate duration
 - `<1.5>`: seconds duration to delay (relative time)
-- `(1.5)`: seconds marker (absolute time)
+- `@1.5`: seconds marker (absolute time)
 - `/`: weave in any order
 - `*`: weave in specific order
-- `&: press at same time Q1&Q2
+- `&`: press at same time Q1&Q2
+- `Q$`: self cast Q
+- `!Q`: do not press Q
+- `()`: optional actions
 - `_comment here_`: comments surrounded by underscores
 - X: alt f4
 
-- ~~K: knockup state (deprecated)~~
-- ~~CC: unspecified CC (deprecated)~~
 - ~: unspecified CC
 
 ## Examples:
@@ -77,6 +74,9 @@
 - thresh escape: `W1 W2[F*M]`
 - darius: `E W A Q[M/]`
 - zed: `W1[E&Q W2 %] A Iduskblade&P`
+- lissandra self ult engage: `E1[E2] W&Q R$`
+- lissandra ult engage: `E1[E2] W&Q R Izhonyas`
+- lissandra fake E: `E1<exp>[M/ !E2]`
 
 - WQ animation cancel yasuo: `Q1 Q2 W[Q3]`
 - beyblade yasuo: `Q1 Q2 E[Q3[F]]`
