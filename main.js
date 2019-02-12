@@ -29,18 +29,21 @@ const dictionary = {
 		K: "get a KILL",
 		"~": " (while) target is CC'd ",
 		C: "CANCEL action",
-		X: "EXIT game",
+		X: "EXIT the game",
 		T: "TYPE in chat",
 		G: "SURRENDER",
 		D: "DIE",
 		"%": "proc RUNES",
-		".": "STOP command"
+		".": "STOP command",
+		"?": "PING",
+		L: "go AFK"
 	},
 	syntax: {//potentially multi character
 		" ": " then\n",//end
 		"/": " (spam), spam ",
 		"*": ", weave in order with ",
 		"&": " and simultaneously ",
+		"|": " or ",
 		"[": " (start casting)",
 		"]": "before the end of ",
 		"(": "optionally",
@@ -49,7 +52,8 @@ const dictionary = {
 		"-": " (deactivate/turn off)",
 		"$": " as self cast",
 		"@": "at time ",
-		"!": "do NOT "
+		"!": "do NOT ",
+		"^": "recommended: "
 	}
 };
 function decodeToEnglish(text) {//text is iLACS
@@ -64,6 +68,13 @@ function decodeToEnglish(text) {//text is iLACS
 		else if (dictionary.special_abilities[text[i]]) {
 			//start of a special ability
 			answer += dictionary.special_abilities[text[i]];
+			if (text[i] === "?" && text[i + 1] === "?") {
+				while (text[i] === "?") {
+					++i;
+					answer += " MIA";
+				}
+				--i;
+			}
 			if (text[i] === "T") {
 				++i;
 				answer += multiplyString("\t", 0) + " \"" + decodeComment(text.substring(i, text.indexOf("\"", i + 1) + 1), "\"") + "\"";
@@ -104,6 +115,11 @@ function decodeToEnglish(text) {//text is iLACS
 		else if (text[i] === "_") {//beginning of a note/comment
 			answer += multiplyString("\t", 0) + " NOTE: " + decodeComment(text.substring(i, text.indexOf("_", i + 1) + 1), "_");
 			i = text.indexOf("_", i + 1);
+			if (text[i + 1] === " ") {
+				++i;//skip thens after comments if a comment is followed by a space
+				answer += "\n" + multiplyString("\t", tab_level);
+			}
+			else answer += " ";
 		}
 		else {
 			answer += text[i];
