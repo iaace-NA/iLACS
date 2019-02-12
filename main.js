@@ -33,7 +33,8 @@ const dictionary = {
 		T: "TYPE in chat",
 		G: "SURRENDER",
 		D: "DIE",
-		"%": "proc RUNES"
+		"%": "proc RUNES",
+		".": "STOP command"
 	},
 	syntax: {//potentially multi character
 		" ": " then\n",//end
@@ -42,8 +43,13 @@ const dictionary = {
 		"&": " and simultaneously ",
 		"[": " (start casting)",
 		"]": "before the end of ",
+		"(": "optionally",
+		")": "end of option",
 		"+": " (activate/turn on)",
-		"-": " (deactivate/turn off)"
+		"-": " (deactivate/turn off)",
+		"$": " as self cast",
+		"@": "at time ",
+		"!": "do NOT "
 	}
 };
 function decodeToEnglish(text) {//text is iLACS
@@ -66,7 +72,7 @@ function decodeToEnglish(text) {//text is iLACS
 		}
 		else if (dictionary.syntax[text[i]]) {
 			//start of syntax
-			if (text[i] === "[") {
+			if (text[i] === "[" || text[i] === "(") {
 				++tab_level;
 				let last_space_index = i;
 				for (; last_space_index > 0; --last_space_index) {
@@ -78,10 +84,10 @@ function decodeToEnglish(text) {//text is iLACS
 				holds.push(text.substring(last_space_index, i));
 				text = text.substring(0, i + 1) + " " + text.substring(i + 1);
 			}
-			if (text[i] === "]") --tab_level;
+			if (text[i] === "]" || text[i] === ")") --tab_level;
 			if (text[i] === " ") answer += dictionary.syntax[text[i]] + multiplyString("\t", tab_level);
-			else if (text[i] === "]") answer += "\n" + multiplyString("\t", tab_level) + dictionary.syntax[text[i]] + holds.pop() + ".";
-			else if (text[i] === "/" && text[i + 1] === " ") answer += " spam";
+			else if (text[i] === "]" || text[i] === ")") answer += "\n" + multiplyString("\t", tab_level) + dictionary.syntax[text[i]] + holds.pop() + ".";
+			else if (text[i] === "/" && dictionary.syntax[text[i]]) answer += " spam";
 			else answer += dictionary.syntax[text[i]];
 		}
 		else if (text[i] === "<") {//beginning of duration
@@ -90,10 +96,11 @@ function decodeToEnglish(text) {//text is iLACS
 			answer += (hold ? "" : multiplyString("\t", tab_level)) + " " + decodeDuration(text.substring(i, text.indexOf(">", i + 1) + 1), hold);
 			i = text.indexOf(">", i + 1);
 		}
+		/*
 		else if (text[i] === "(") {//beginning of a time duration
 			answer += multiplyString("\t", tab_level) + " (and) " + decodeTimeMarker(text.substring(i, text.indexOf(")", i + 1) + 1));
 			i = text.indexOf(")", i + 1);
-		}
+		}*/
 		else if (text[i] === "_") {//beginning of a note/comment
 			answer += multiplyString("\t", 0) + " NOTE: " + decodeComment(text.substring(i, text.indexOf("_", i + 1) + 1), "_");
 			i = text.indexOf("_", i + 1);
