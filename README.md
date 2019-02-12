@@ -5,7 +5,7 @@
 - W; W1, W2,..
 - E; E1, E2,..
 - R; R1, R2,..
-- Q*!: repeat Q for an indeterminate amount of times
+- Q/: repeat Q for an indeterminate amount of times
 - Qs: for all Q activations
 - Qx: for a indeterminate Q activation
 - Q+: activate Q passive
