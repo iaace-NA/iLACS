@@ -94,6 +94,8 @@
 - lissandra self ult engage: `E1[E2] W&Q R$`
 - lissandra ult engage: `E1[E2] W&Q R Izhonyas`
 - lissandra fake E: `E1<exp>[M/ !E2]`
+- nautilus `R Q W[A&P E S A/]`
+- zoe `E ~Q1[R[Q2 A&P]]`
 
 - WQ animation cancel yasuo: `Q1 Q2 W[Q3]`
 - beyblade yasuo: `Q1 Q2 E[Q3[F]]`
