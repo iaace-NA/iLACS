@@ -62,6 +62,7 @@
 - `!Q`: do not press Q
 - `^Q`: it is recommended to press Q
 - `()`: optional actions
+- `Q,`: miss an ability (added after the ability)
 - `_comment here_`: comments surrounded by underscores
 - X: alt f4
 
