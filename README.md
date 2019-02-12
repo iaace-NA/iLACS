@@ -1,4 +1,4 @@
-# Specification for iaace's League Ability Combo Syntax(iLACS)
+# Specification for iaace's League Ability Combo Syntax (iLACS)
 
 ## Normal Abilities
 - Q; Q1, Q2,.. used for distinct abilities, not casts. eg. yasuo Q1 Q2, Vi Q<1>
@@ -8,8 +8,8 @@
 - Q*: repeat Q for an indeterminate amount of times
 - Qs: for all Q activations
 - Qx: for a indeterminate Q activation
-- +Q: activate Q passive
-- -Q: deactivate Q passive
+- Q+: activate Q passive
+- Q-: deactivate Q passive
 
 ## Special Abilities
 - I, I1, I2, I3: item active
@@ -62,7 +62,7 @@ Examples:
 - ahri: `E Q W`
 - alistar: `W[Q] E`
 - wukong: `E Q A W`
-- amumu: `W+ Q E/A W-`
+- amumu: `W+ Q E*A W-`
 - riven fast combo: `A1[Q1 _activate Q1 after A1 damage_] A2[Q2] A3[Q3]`
 - vi Q: `Q<> Q<1> Q<1.5> Q<max> Q<min> Q<exp>`
 - lee sin: `V W Q1 Q2 F R`
