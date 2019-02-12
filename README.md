@@ -55,8 +55,6 @@
 - ~~CC: unspecified CC (deprecated)~~
 - ~: unspecified CC
 
-all other english in lowercase
-
 ## Examples:
 
 - karma root combo: `W[R] Q`
