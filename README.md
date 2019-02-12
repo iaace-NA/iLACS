@@ -27,6 +27,8 @@
 - T"abc": type abc in chat
 - D: die
 - K: get a kill
+- KK: double kill
+- KKKKK: penta kill
 - G: forfeit (/ff, /surrender)
 - C: cancel action
 - .: stop command
