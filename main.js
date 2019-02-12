@@ -51,10 +51,12 @@ const dictionary = {
 		"+": " (activate/turn on)",
 		"-": " (deactivate/turn off)",
 		"$": " as self cast",
-		"@": "at time ",
+		"@": " at ",
 		"!": "do NOT ",
 		"^": "recommended: ",
-		"T": "teammate "
+		"T": "teammate ",
+		"U": " until ",
+		"O": "opponent "
 	}
 };
 function decodeToEnglish(text) {//text is iLACS
