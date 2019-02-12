@@ -27,7 +27,7 @@ const dictionary = {
 		//SS: "summoner spell",
 		M: "MOVE",
 		K: "get a KILL",
-		"~": " (while) target is CC'd ",
+		"~": " (while) target is CC'd, ",
 		C: "CANCEL action",
 		X: "EXIT the game",
 		T: "TYPE in chat",
@@ -67,18 +67,32 @@ function decodeToEnglish(text) {//text is iLACS
 		}
 		else if (dictionary.special_abilities[text[i]]) {
 			//start of a special ability
-			answer += dictionary.special_abilities[text[i]];
-			if (text[i] === "?" && text[i + 1] === "?") {
-				while (text[i] === "?") {
+			if (text[i] === "K" && text[i + 1] === "K") {
+				let kill_count = 0;
+				while (text[i] === "K") {
 					++i;
-					answer += " MIA";
+					++kill_count;
 				}
 				--i;
+				if (kill_count <= 5) {
+					answer += "get a " + ["DOUBLE", "TRIPLE", "QUADRA", "PENTA"][kill_count - 2] + " KILL";
+				}
+				else answer += "get " + kill_count + " KILLs";
 			}
-			if (text[i] === "T") {
-				++i;
-				answer += multiplyString("\t", 0) + " \"" + decodeComment(text.substring(i, text.indexOf("\"", i + 1) + 1), "\"") + "\"";
-				i = text.indexOf("\"", i + 1);
+			else {
+				answer += dictionary.special_abilities[text[i]];
+				if (text[i] === "?" && text[i + 1] === "?") {
+					while (text[i] === "?") {
+						++i;
+						answer += " MIA";
+					}
+					--i;
+				}
+				if (text[i] === "T") {
+					++i;
+					answer += multiplyString("\t", 0) + " \"" + decodeComment(text.substring(i, text.indexOf("\"", i + 1) + 1), "\"") + "\"";
+					i = text.indexOf("\"", i + 1);
+				}
 			}
 		}
 		else if (dictionary.syntax[text[i]]) {
@@ -98,7 +112,7 @@ function decodeToEnglish(text) {//text is iLACS
 			if (text[i] === "]" || text[i] === ")") --tab_level;
 			if (text[i] === " ") answer += dictionary.syntax[text[i]] + multiplyString("\t", tab_level);
 			else if (text[i] === "]" || text[i] === ")") answer += "\n" + multiplyString("\t", tab_level) + dictionary.syntax[text[i]] + holds.pop() + ".";
-			else if (text[i] === "/" && dictionary.syntax[text[i]]) answer += " spam";
+			else if (text[i] === "/" && (dictionary.syntax[text[i + 1]] || i + 1 === text.length)) answer += " spam";
 			else answer += dictionary.syntax[text[i]];
 		}
 		else if (text[i] === "<") {//beginning of duration
@@ -197,4 +211,4 @@ console.log(decodeToEnglish("Q1 Q2 W[Q3]"));
 console.log("\n\n\n");
 console.log("riven fast combo\n" + decodeToEnglish("A1[Q1 _activate Q1 after A1 damage_] A2[Q2] A3[Q3]"));
 console.log("\n\n\n");
-console.log("the ragequit\n" + decodeToEnglish("T\"open mid\" G@15mins X"));
+console.log("the ragequit\n" + decodeToEnglish("??? T\"/all open mid\" @15mins G ^(L|X)"));
