@@ -35,9 +35,9 @@ const dictionary = {
 	},
 	syntax: {//potentially multi character
 		" ": " then\n",//end
-		"*": " continuously weave in any order with ",
-		"/": " continuously weave in order with ",
-		"&": " and also ",
+		"/": " (spam), spam ",
+		"*": ", weave in order with ",
+		"&": " and simultaneously ",
 		"[": " (start casting)",
 		"]": "before the end of ",
 		"+": " (activate/turn on)",
@@ -138,6 +138,7 @@ function multiplyString(text, num) {
 	return answer;
 }
 //console.log(decodeToEnglish("Q1 Q2 E[Q3[F A E[Q1[R]]]]"));
+/*
 console.log("airblade yasuo\n" + decodeToEnglish("Q1 Q2 Q3[E[Q1[R]]] Q2"));
 console.log("\n\n\n");
 console.log("shen flash taunt\n" + decodeToEnglish("E[F]"));
@@ -147,17 +148,17 @@ console.log("\n\n\n");
 console.log("keyblade yasuo v2\n" + decodeToEnglish("Q1 Q2 E[Q3[F]] A E[Q1[R]]"));
 console.log("\n\n\n");
 console.log("vi Q\n" + decodeToEnglish("Q<cxl>[C] Q<1>[V] Q<1.5>[V] Q<max>[V] Q<min>[V] Q<exp>"));
-
+*/
 
 console.log("\n\n\n");
 console.log("alistar combo\n" + decodeToEnglish("W[Q] E"));
 console.log("\n\n\n");
 console.log("lee sin combo\n" + decodeToEnglish("V W1 Q1 Q2 F R W2"));
 console.log("\n\n\n");
-console.log(decodeToEnglish("W+ Q E/A W-"));
+console.log("amumu simple engage\n" + decodeToEnglish("W+ Q E/A W-"));
 console.log("\n\n\n");
 console.log(decodeToEnglish("Q1 Q2 W[Q3]"));
 console.log("\n\n\n");
 console.log("riven fast combo\n" + decodeToEnglish("A1[Q1 _activate Q1 after A1 damage_] A2[Q2] A3[Q3]"));
 console.log("\n\n\n");
-console.log("the ragequit\n" + decodeToEnglish("T\"open mid\" G@15mins X"))
+console.log("the ragequit\n" + decodeToEnglish("T\"open mid\" G@15mins X"));
