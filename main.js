@@ -56,7 +56,8 @@ const dictionary = {
 		"^": "recommended: ",
 		"T": "teammate ",
 		"U": " until ",
-		"O": "opponent "
+		"O": "opponent ",
+		",": " and miss"
 	}
 };
 function decodeToEnglish(text) {//text is iLACS
