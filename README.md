@@ -64,6 +64,8 @@
 
 - ~: unspecified CC
 
+- Note: lowercase words and numbers will generally pass through untouched. but SPACE is a special syntax character (for "then") so it is recommended to make phrases using \_underscore comment notation\_. Exceptions include: `Ibork` for `ITEMbork` etc
+
 ## Examples:
 - the ragequit: `??? "/all open mid" @15mins G ^(L|X)`
 - karma root combo: `W[R] Q`
