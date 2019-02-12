@@ -44,8 +44,8 @@
 - `<min>`: hold for minimum duration
 - `<cxl>`: hold, then cancel
 - `<>`: hold for indeterminate duration
-- `<1.5>`: seconds duration to delay
-- `(1.5)`: seconds time marker
+- `<1.5>`: seconds duration to delay (relative time)
+- `(1.5)`: seconds marker (absolute time)
 - `/`: weave in any order
 - `*`: weave in specific order
 - `&: press at same time Q1&Q2
