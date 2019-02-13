@@ -40,6 +40,7 @@
 ## Syntax
 - `[`: cast start
 - `]`: cast end
+  - NOTE: during spell cast start/end, you are normally not allowed to cast other abilities such as auto attacks. To denote actions during a spell's effects (and not during its initial cast), use `{}`
 - `?<1.5>`: seconds duration to hold
 - `?<1.5>[]`: seconds duration to hold with actions in between
 - `<exp>`: expire duration
