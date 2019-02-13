@@ -1,5 +1,5 @@
 /*
-v0.1.1
+v0.1.2
 */
 function strictParseInt(str) {
 	let ans = ""
@@ -61,9 +61,9 @@ const dictionary = {
 		"@": " at ",
 		"!": "do NOT ",
 		"^": "recommended: ",
-		"T": "teammate ",
+		"T": " Teammate ",
 		"U": " until ",
-		"O": "opponent ",
+		"O": " Opponent ",
 		",": ", miss,",
 		":": ", for all casts, ",
 		";": ", for any cast, "
