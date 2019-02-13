@@ -58,8 +58,8 @@ const dictionary = {
 		"U": " until ",
 		"O": "opponent ",
 		",": ", miss,",
-		":": " and for all casts, ",
-		";": " and for any cast, "
+		":": ", for all casts, ",
+		";": ", for any cast, "
 	}
 };
 function decodeToEnglish(text) {//text is iLACS
