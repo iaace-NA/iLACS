@@ -207,7 +207,7 @@ function updateWebsite() {
 	window.history.pushState({}, "", url);
 	document.getElementById('s1').innerHTML = document.getElementById('i1').value.length + " characters";
 	document.getElementById('s2').innerHTML = document.getElementById('o1').value.length + " characters";
-	document.getElementById('d2').innerHTML = ((document.getElementById('i1').value.length / document.getElementById('o1').value.length) * 100) + "% of original size<br>" + (document.getElementById('o1').value.length / document.getElementById('i1').value.length) + "x more efficient";
+	document.getElementById('d2').innerHTML = ((document.getElementById('i1').value.length / document.getElementById('o1').value.length) * 100) + "% of original size&nbsp;&nbsp;&nbsp;&nbsp;" + (document.getElementById('o1').value.length / document.getElementById('i1').value.length) + "x more efficient";
 }
 function getParameterByName(name, url) {
 	if (!url) url = window.location.href;

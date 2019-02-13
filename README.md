@@ -97,7 +97,7 @@ translator located at https://ilacs.iaace.gg/
 - katarina: `Q W{M} E E`
 - xayah: `W P A1 A2 A3 Q[P A[E P]] A/`
 - thresh: `hexF<max> Q1<max>[Q2] R E`
-- thresh escape: `W1 TW2{F M/}`
+- thresh escape: `W1 TW2[F M/]`
 - darius: `E W % A Q[M/]`
 - zed: `W1[E&Q&%]{W2} A Iduskblade&P`
 - lissandra self ult engage: `E1{E2} W{Q R$}`
