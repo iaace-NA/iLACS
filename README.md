@@ -73,34 +73,34 @@
 
 ## Examples:
 - the ragequit: `??? "/all open mid" @15mins G ^(L|X)`
-- karma root combo: `W[~R[Q]]`
+- karma root combo: `W{~R{Q}}`
 - shen E-flash: `E[F]`
-- shen E-flash long combo: `E[F] M Q&W S A/ K`
+- shen E-flash long combo: `E[F]{M Q&W S} A/ K`
 - shen flash-E: `F E`
-- ahri: `E Q W`
+- ahri: `E{Q W}`
 - alistar: `W[Q] E`
-- wukong: `E Q A W<>[M/]`
-- amumu: `W+ Q E/A W-`
+- wukong: `E Q A W<>{M/}`
+- amumu: `W+<>{Q E/A} W-`
 - riven fast combo: `A1[Q1 _activate Q1 after A1 damage_] A2[Q2] A3[Q3]`
 - vi Q: `Q<> Q<1> Q<1.5> Q<max> Q<min> Q<exp>`
-- lee sin: `V W Q1 Q2 F R`
-- brand: `E Q ~W`
-- rakan: `E1 E2 R[F ~W] Q`
-- katarina: `Q W[M] E E`
+- lee sin: `V W@ward Q1{Q2} F R`
+- brand: `E P1{Q} P2{~W} P3`
+- rakan: `E1{E2} R[F@O ~W] Q`
+- katarina: `Q W{M} E E`
 - xayah: `W P A1 A2 A3 Q[P A[E P]] A/`
-- thresh: `hexF<max> Q1<max> Q2 R E`
-- thresh escape: `W1 TW2[F M/]`
+- thresh: `hexF<max> Q1<max>[Q2] R E`
+- thresh escape: `W1 TW2{F M/}`
 - darius: `E W % A Q[M/]`
-- zed: `W1[E&Q&% W2] A Iduskblade&P`
-- lissandra self ult engage: `E1[E2] W&Q R$`
-- lissandra ult engage: `E1[E2] W&Q R Izhonyas`
-- lissandra fake E: `E1<exp>[M/ !E2]`
-- nautilus `R Q W[A&P E S A/]`
-- zoe `E ~Q1[R[Q2 A&P]]`
-- master yi `R[M/ (F) Ibork Q E[A/|(W<>) KKKKK]] W<max>`
+- zed: `W1[E&Q&%]{W2} A Iduskblade&P`
+- lissandra self ult engage: `E1{E2} W{Q R$}`
+- lissandra ult engage: `E1{E2} W&Q R Izhonyas`
+- lissandra fake E: `E1<exp>{M/ !E2}`
+- nautilus `R Q W{A&P E S A/}`
+- zoe `E ~Q1{R[Q2 A&P]}`
+- master yi `R{M/ (F) Ibork Q E{A/|(W<>)} KKKKK} W<max>`
 
 - WQ animation cancel yasuo: `Q1 Q2 W[Q3]`
 - beyblade yasuo: `Q1 Q2 E[Q3[F]]`
-- airblade yasuo: `Q1 Q2 Q3[E[Q1[R]]] Q2`
-- keyblade yasuo: `Q1 Q2 E[Q3[F A E[Q1[R]]]]`
+- airblade yasuo: `Q1 Q2 Q3{E[Q1[R]]} Q2`
+- keyblade yasuo: `Q1 Q2 E[Q3[F A E[Q1[R]]]] Q2 Q3`
 - keyblade yasuo v2: `Q1 Q2 E<cxl>[Q3<cxl>[F]] A E<cxl>[Q1<cxl>[R]] Q2 Q3`
