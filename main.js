@@ -1,3 +1,6 @@
+/*
+v0.1.0
+*/
 function strictParseInt(str) {
 	let ans = ""
 	for (let i = 0; i < str.length; ++i) {
