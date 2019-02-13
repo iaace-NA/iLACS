@@ -6,8 +6,8 @@
 - `E`; `E1`, `E2`,..
 - `R`; `R1`, `R2`,..
 - `Q/`: repeat Q for an indeterminate amount of times
-- Qs: for all Q activations
-- Qx: for a indeterminate Q activation
+- `Q:`: for all Q activations
+- `Q;`: for any Q activation
 - `Q+`: activate Q passive
 - `Q-`: deactivate Q passive
 
