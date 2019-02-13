@@ -53,6 +53,8 @@ const dictionary = {
 		"+": " (activate/turn on)",
 		"-": " (deactivate/turn off)",
 		"$": " as self cast",
+		"#": " normal cast",
+		"=": " as smart/quick cast",
 		"@": " at ",
 		"!": "do NOT ",
 		"^": "recommended: ",
