@@ -65,9 +65,11 @@ translator located at https://ilacs.iaace.gg/
 - `()`: optional actions
 - `Q,`: miss an ability (added after the ability)
 - `_comment here_`: comments surrounded by underscores
-- X: alt f4
+- `X`: alt f4
+- `#`: normal cast
+- `=`: smart cast/quick cast
 
-- ~: unspecified CC
+- `~`: unspecified CC
 
 - Note: lowercase words and numbers will generally pass through untouched. but SPACE is a special syntax character (for "then") so it is recommended to make phrases using \_underscore comment notation\_. Exceptions include: `Ibork` for `ITEMbork` etc
 
@@ -98,6 +100,7 @@ translator located at https://ilacs.iaace.gg/
 - nautilus `R Q W{A&P E S A/}`
 - zoe `E ~Q1{R[Q2 A&P]}`
 - master yi `R{M/ (F) Ibork Q E{A/|(W<>)} KKKKK} W<max>`
+- old alistar recall combo `W[Q<cxl>[B]] E Q/A`
 
 - WQ animation cancel yasuo: `Q1 Q2 W[Q3]`
 - beyblade yasuo: `Q1 Q2 E[Q3[F]]`
