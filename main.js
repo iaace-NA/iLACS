@@ -57,7 +57,9 @@ const dictionary = {
 		"T": "teammate ",
 		"U": " until ",
 		"O": "opponent ",
-		",": " and miss"
+		",": " and miss",
+		":": " and for all casts, ",
+		";": " and for any cast, "
 	}
 };
 function decodeToEnglish(text) {//text is iLACS
