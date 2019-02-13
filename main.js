@@ -195,7 +195,6 @@ function updateWebsite() {
 	document.getElementById('o1').value = decodeToEnglish(document.getElementById('i1').value);
 	const url = window.location.origin + window.location.pathname + "?input=" + encodeURIComponent(document.getElementById('i1').value);
 	document.getElementById('d1').innerHTML = "URL to current translation: <a href=\"" + url + "\">" + url + "</a>";
-	window.location = url;
 }
 function getParameterByName(name, url) {
 	if (!url) url = window.location.href;
