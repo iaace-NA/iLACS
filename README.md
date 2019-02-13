@@ -1,5 +1,5 @@
 # Specification for iaace's League Ability Combo Syntax (iLACS)
-
+translator located at https://ilacs.iaace.gg/
 ## Normal Abilities
 - `Q`; `Q1`, `Q2`,.. used for distinct abilities, not casts. eg. yasuo Q1 Q2, Vi Q<1>
 - `W`; `W1`, `W2`,..
