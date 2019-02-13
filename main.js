@@ -23,7 +23,7 @@ const dictionary = {
 		//AA: "auto attack",
 		//AM: "attack move",
 		F: "FLASH",
-		S: "summoner SPELL",
+		S: "use SUMMONER SPELL",
 		//SS: "summoner spell",
 		M: "MOVE",
 		K: "get a KILL",
@@ -108,19 +108,21 @@ function decodeToEnglish(text) {//text is iLACS
 				++tab_level;
 				let last_space_index = i;
 				for (; last_space_index > 0; --last_space_index) {
-					if (text[last_space_index] === " ") {
+					if (text.substring(last_space_index, last_space_index + 1) === " ") {
 						++last_space_index;
 						break;
 					}
 				}
 				holds.push(text.substring(last_space_index, i));
-				text = text.substring(0, i + 1) + " " + text.substring(i + 1);
 			}
 			if (text[i] === "]" || text[i] === ")" || text[i] === "}") --tab_level;
 			if (text[i] === " ") answer += dictionary.syntax[text[i]] + multiplyString("\t", tab_level);
 			else if (text[i] === "]" || text[i] === ")" || text[i] === "}") answer += "\n" + multiplyString("\t", tab_level) + dictionary.syntax[text[i]] + holds.pop() + ".";
 			else if (text[i] === "/" && (dictionary.syntax[text[i + 1]] || i + 1 === text.length)) answer += " spam";
 			else answer += dictionary.syntax[text[i]];
+			if (text[i] === "[" || text[i] === "(" || text[i] === "{") {
+				answer += dictionary.syntax[" "] + multiplyString("\t", tab_level);
+			}
 		}
 		else if (text[i] === "<") {//beginning of duration
 			let hold = true;//set to true if not a delay
@@ -219,7 +221,7 @@ console.log("\n\n\n");
 console.log("keyblade yasuo v2\n" + decodeToEnglish("Q1 Q2 E[Q3[F]] A E[Q1[R]]"));
 console.log("\n\n\n");
 console.log("vi Q\n" + decodeToEnglish("Q<cxl>[C] Q<1>[V] Q<1.5>[V] Q<max>[V] Q<min>[V] Q<exp>"));
-*/
+
 
 console.log("\n\n\n");
 console.log("alistar combo\n" + decodeToEnglish("W[Q] E"));
@@ -233,3 +235,5 @@ console.log("\n\n\n");
 console.log("riven fast combo\n" + decodeToEnglish("A1[Q1 _activate Q1 after A1 damage_] A2[Q2] A3[Q3]"));
 console.log("\n\n\n");
 console.log("the ragequit\n" + decodeToEnglish("??? T\"/all open mid\" @15mins G ^(L|X)"));
+*/
+console.log(decodeToEnglish("E[F]{M Q&W S} A/ K"));
