@@ -96,6 +96,7 @@
 - lissandra fake E: `E1<exp>[M/ !E2]`
 - nautilus `R Q W[A&P E S A/]`
 - zoe `E ~Q1[R[Q2 A&P]]`
+- master yi `R[M/ (F) Ibork Q E[A/|(W<>) KKKKK]] W<max>`
 
 - WQ animation cancel yasuo: `Q1 Q2 W[Q3]`
 - beyblade yasuo: `Q1 Q2 E[Q3[F]]`
