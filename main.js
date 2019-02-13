@@ -48,6 +48,8 @@ const dictionary = {
 		"]": "before the end of ",
 		"(": "optionally",
 		")": "end of option",
+		"{": ", finish casting, and during the spell's effects,",
+		"}": "before the effects end on ",
 		"+": " (activate/turn on)",
 		"-": " (deactivate/turn off)",
 		"$": " as self cast",
@@ -102,7 +104,7 @@ function decodeToEnglish(text) {//text is iLACS
 		}
 		else if (dictionary.syntax[text[i]]) {
 			//start of syntax
-			if (text[i] === "[" || text[i] === "(") {
+			if (text[i] === "[" || text[i] === "(" || text[i] === "{") {
 				++tab_level;
 				let last_space_index = i;
 				for (; last_space_index > 0; --last_space_index) {
@@ -114,9 +116,9 @@ function decodeToEnglish(text) {//text is iLACS
 				holds.push(text.substring(last_space_index, i));
 				text = text.substring(0, i + 1) + " " + text.substring(i + 1);
 			}
-			if (text[i] === "]" || text[i] === ")") --tab_level;
+			if (text[i] === "]" || text[i] === ")" || text[i] === "}") --tab_level;
 			if (text[i] === " ") answer += dictionary.syntax[text[i]] + multiplyString("\t", tab_level);
-			else if (text[i] === "]" || text[i] === ")") answer += "\n" + multiplyString("\t", tab_level) + dictionary.syntax[text[i]] + holds.pop() + ".";
+			else if (text[i] === "]" || text[i] === ")" || text[i] === "}") answer += "\n" + multiplyString("\t", tab_level) + dictionary.syntax[text[i]] + holds.pop() + ".";
 			else if (text[i] === "/" && (dictionary.syntax[text[i + 1]] || i + 1 === text.length)) answer += " spam";
 			else answer += dictionary.syntax[text[i]];
 		}
