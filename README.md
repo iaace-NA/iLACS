@@ -80,7 +80,7 @@ translator located at https://ilacs.iaace.gg/
 - `^()` a recommended option
 
 ## Champion Specific Examples:
-- the ragequit: `???@T "/all open mid" ^(D/@O|L|X) U@15mins G X`
+- the ragequit: `_if_T:,@O&TD@yourO ???@T "gg" "/all open mid" ^(D/@O|L|X) U@15mins G X`
 - karma root combo: `W{~R{Q}}`
 - shen E-flash: `E[F]`
 - shen E-flash long combo: `E[F]{M Q&W S} A/ K`
