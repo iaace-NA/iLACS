@@ -1,40 +1,40 @@
 # Specification for iaace's League Ability Combo Syntax (iLACS)
 
 ## Normal Abilities
-- Q; Q1, Q2,.. used for distinct abilities, not casts. eg. yasuo Q1 Q2, Vi Q<1>
-- W; W1, W2,..
-- E; E1, E2,..
-- R; R1, R2,..
-- Q/: repeat Q for an indeterminate amount of times
+- `Q`; `Q1`, `Q2`,.. used for distinct abilities, not casts. eg. yasuo Q1 Q2, Vi Q<1>
+- `W`; `W1`, `W2`,..
+- `E`; `E1`, `E2`,..
+- `R`; `R1`, `R2`,..
+- `Q/`: repeat Q for an indeterminate amount of times
 - Qs: for all Q activations
 - Qx: for a indeterminate Q activation
-- Q+: activate Q passive
-- Q-: deactivate Q passive
+- `Q+`: activate Q passive
+- `Q-`: deactivate Q passive
 
 ## Special Abilities
-- I, I1, I2, I3: item active
-- V: vision ward
-- B: recall
-- P: passive
-- %: rune
-- A: attack
-- F: flash
-- S: summoner spell
-- S1/S2: summoner spell 1, summoner spell 2
-- M: move character
-- X: exit game
-- L: go AFK
-- "abc": type abc in chat
-- D: die
-- K: get a kill
-- KK: double kill
-- KKKKK: penta kill
-- G: forfeit (/ff, /surrender)
-- C: cancel action
-- .: stop command
-- ?: ping map
-- ??: MIA ping
-- ????????: MIA ping
+- `I`, `I1`, `I2`, `I3`: item active
+- `V`: vision ward
+- `B`: recall
+- `P`: passive
+- `%`: rune
+- `A`: attack
+- `F`: flash
+- `S`: summoner spell
+- `S1`/`S2`: summoner spell 1, summoner spell 2
+- `M`: move character
+- `X`: exit game
+- `L`: go AFK
+- `"abc"`: type abc in chat
+- `D`: die
+- `K`: get a kill
+- `KK`: double kill
+- `KKKKK`: penta kill
+- `G`: forfeit (/ff, /surrender)
+- `C`: cancel action
+- `.`: stop command
+- `?`: ping map
+- `??`: MIA ping
+- `????????`: MIA ping
 
 
 ## Syntax
