@@ -34,7 +34,7 @@ const dictionary = {
 		G: "SURRENDER",
 		D: "DIE",
 		"%": "proc RUNES",
-		".": "STOP command",
+		".": "use STOP command",
 		"?": "PING",
 		L: "go AFK"
 	},
