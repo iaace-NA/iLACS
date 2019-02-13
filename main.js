@@ -57,7 +57,7 @@ const dictionary = {
 		"T": "teammate ",
 		"U": " until ",
 		"O": "opponent ",
-		",": " and miss",
+		",": ", miss,",
 		":": " and for all casts, ",
 		";": " and for any cast, "
 	}
