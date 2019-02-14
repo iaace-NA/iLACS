@@ -1,3 +1,4 @@
+![iLACS logo](logo_rectangular.png)
 # Specification for iaace's League Ability Combo Syntax (iLACS) v0.1.2
 translator located at https://ilacs.iaace.gg/
 ## Normal Abilities
