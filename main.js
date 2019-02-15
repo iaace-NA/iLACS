@@ -241,23 +241,27 @@ function decodeToEnglish(text, html = false) {//text is iLACS
 }
 function decodeDuration(text, hold, html) {
 	let answer = "";
-	if (text == "<exp>") answer = "and hold until it expires.";
-	else if (text == "<max>") answer = "and keep for maximum duration.";
-	else if (text == "<min>") answer = "and keep for minimum duration.";
-	else if (text == "<cxl>") answer = "and hold while preparing to cancel.";
-	else if (text == "<>") answer = "and keep for any duration.";
+	let prefix = "and ";
+	if (text == "<exp>") answer = "hold until it expires.";
+	else if (text == "<max>") answer = "keep for maximum duration.";
+	else if (text == "<min>") answer = "keep for minimum duration.";
+	else if (text == "<cxl>") answer = "hold while preparing to cancel.";
+	else if (text == "<>") answer = "keep for any duration.";
 	else {
 		if (text[0] !== "<" || text[text.length - 1] !== ">") throw new Error("decodeDuration() invalid entry missing opening or closing angle brackets:\n" + text);
 		else {//opens and closes with angle brackets
 			const duration = parseFloat(text.substring(1, text.length - 1));
 			if (isNaN(duration)) throw new Error("decodeDuration() invalid duration:\n" + text);
 			else {
-				answer = (hold ? "and keep" : "wait") + " for " + duration + " seconds.";
+				if (!hold) prefix = "";
+				answer = (hold ? "keep" : "wait") + " for " + duration + " seconds.";
 			}
 		}
 	}
-	if (html) return "<span class=\"duration\">" + answer + "</span>";
-	else return answer;
+	if (html) {
+		return prefix + "<span class=\"duration\">" + answer + "</span>";
+	}
+	else return prefix + answer;
 }
 function decodeTimeMarker(text) {//not currently used
 	if (text[0] !== "(" || text[text.length - 1] !== ")") throw new Error("decodeTimeMarker() invalid entry missing opening or closing parenthesis:\n" + text);
