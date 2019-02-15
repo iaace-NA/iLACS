@@ -1,5 +1,5 @@
 /*
-v0.1.2
+v0.2.0
 */
 function strictParseInt(str) {
 	let ans = ""
@@ -66,7 +66,8 @@ const dictionary = {
 		"O": " Opponent ",
 		",": ", miss,",
 		":": ", for all casts, ",
-		";": ", for any cast, "
+		";": ", for any cast, ",
+		"'": " in range of "
 	}
 };
 function decodeToEnglish(text) {//text is iLACS

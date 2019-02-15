@@ -1,5 +1,5 @@
 ![iLACS logo](logo_rectangular.png)
-# Specification for iaace's League Ability Combo Syntax (iLACS) v0.1.2
+# Specification for iaace's League Ability Combo Syntax (iLACS) v0.2.0
 translator located at https://ilacs.iaace.gg/<br>
 standard for describing ability combos in League of Legends (LoL)
 ## Normal Abilities
@@ -70,6 +70,7 @@ standard for describing ability combos in League of Legends (LoL)
 - `X`: alt f4
 - `Q#`: normal cast an ability
 - `Q=`: smart cast/quick cast an ability
+- `Q'`: use an ability within range of something
 
 - `~`: unspecified CC
 
