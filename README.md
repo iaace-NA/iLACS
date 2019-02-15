@@ -1,6 +1,7 @@
 ![iLACS logo](logo_rectangular.png)
 # Specification for iaace's League Ability Combo Syntax (iLACS) v0.1.2
-translator located at https://ilacs.iaace.gg/
+translator located at https://ilacs.iaace.gg/<br>
+standard for describing ability combos in League of Legends (LoL)
 ## Normal Abilities
 - `Q`; `Q1`, `Q2`,.. used for distinct abilities, not casts. eg. yasuo Q1 Q2, Vi Q<1>
 - `W`; `W1`, `W2`,..
