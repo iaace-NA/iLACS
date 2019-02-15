@@ -130,6 +130,59 @@ const html_dictionary = {
 		"~": " (while) target is <span class=\"modifier\">CC'd</span>, ",
 	}
 };
+function colorCodeInput(text) {
+	let answer = "";
+	const dictionary = normal_dictionary;
+	for (let i = 0; i < text.length; ++i) {
+		if (dictionary.normal_abilities[text[i]]) {
+			//start of an ability
+			answer += "<span class=\"ability\">" + text[i] + "</span>";
+		}
+		else if (dictionary.special_abilities[text[i]]) {
+			//start of a special ability
+				if (text[i] === "\"") {
+					answer += "<span class=\"comment\">";
+					appendToAnswerHTML("\"");
+					answer += decodeComment(text.substring(i, text.indexOf("\"", i + 1) + 1), "\"", false);
+					appendToAnswerHTML("\"");
+					answer += "</span>";
+					i = text.indexOf("\"", i + 1);
+				}
+				else {
+					answer += "<span class=\"special\">" + text[i] + "</span>";
+				}
+		}
+		else if (dictionary.syntax[text[i]]) {
+			//start of syntax
+			if (text[i] !== "T" && text[i] !== "O") answer += "<span class=\"modifier\">";
+			else if (text[i] === "T") answer += "<span class=\"teammate\">";
+			else answer += "<span class=\"opponent\">";
+			appendToAnswerHTML(text[i]);
+			answer += "</span>";
+		}
+		else if (text[i] === "<") {//beginning of duration
+			answer += "<span class=\"duration\">";
+			appendToAnswerHTML(text.substring(i, text.indexOf(">", i + 1) + 1));
+			answer += "</span>";
+			i = text.indexOf(">", i + 1);
+		}
+		else if (text[i] === "_") {//beginning of a note/comment
+			answer += "<span class=\"comment\">";
+			appendToAnswerHTML(text.substring(i, text.indexOf("_", i + 1) + 1));
+			answer += "</span>";
+			i = text.indexOf("_", i + 1);
+		}
+		else {
+			answer += "<span class=\"suffix\">";
+			appendToAnswerHTML(text[i]);
+			answer += "</span>";
+		}
+	}
+	return answer;
+	function appendToAnswerHTML(new_string) {//escapes HTML specials
+		answer += new_string.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;").replace(/\t/g, "&#9;");
+	}
+}
 function decodeToEnglish(text, html = false) {//text is iLACS
 	let answer = "";
 	let tab_level = 0;
@@ -164,9 +217,10 @@ function decodeToEnglish(text, html = false) {//text is iLACS
 					--i;
 				}
 				if (text[i] === "\"") {
-					appendToAnswerHTML(multiplyString("\t", 0) + " \"")
-					answer += decodeComment(text.substring(i, text.indexOf("\"", i + 1) + 1), "\"", html);
-					appendToAnswerHTML("\"");
+					appendToAnswerHTML(multiplyString("\t", 0));
+					if (html) answer += " <span class=\"comment\">";
+					appendToAnswerHTML("\"" + decodeComment(text.substring(i, text.indexOf("\"", i + 1) + 1), "\"", false) + "\"");
+					if (html) answer += "</span>";
 					i = text.indexOf("\"", i + 1);
 				}
 			}
@@ -210,14 +264,11 @@ function decodeToEnglish(text, html = false) {//text is iLACS
 			answer += decodeDuration(text.substring(i, text.indexOf(">", i + 1) + 1), hold, html);
 			i = text.indexOf(">", i + 1);
 		}
-		/*
-		else if (text[i] === "(") {//beginning of a time duration
-			answer += multiplyString("\t", tab_level) + " (and) " + decodeTimeMarker(text.substring(i, text.indexOf(")", i + 1) + 1));
-			i = text.indexOf(")", i + 1);
-		}*/
 		else if (text[i] === "_") {//beginning of a note/comment
 			appendToAnswerHTML(multiplyString("\t", 0));
-			answer += " NOTE: " + decodeComment(text.substring(i, text.indexOf("_", i + 1) + 1), "_", html);
+			if (html) answer += " <span class=\"comment\">NOTE:</span> ";
+			else answer += " NOTE: ";
+			answer += decodeComment(text.substring(i, text.indexOf("_", i + 1) + 1), "_", html);
 			i = text.indexOf("_", i + 1);
 			if (text[i + 1] === " ") {
 				++i;//skip thens after comments if a comment is followed by a space
@@ -292,6 +343,7 @@ if (document) {
 }
 function updateWebsite() {
 	document.getElementById('o1').innerHTML = decodeToEnglish(document.getElementById('i1').value, true);
+	document.getElementById('o2').innerHTML = colorCodeInput(document.getElementById('i1').value);
 	const non_html_occ = decodeToEnglish(document.getElementById('i1').value, false).length;
 	const url = window.location.origin + window.location.pathname + "?input=" + encodeURIComponent(document.getElementById('i1').value);
 	document.getElementById('d1').innerHTML = "URL to current translation: <a href=\"" + url + "\">" + url + "</a>";
