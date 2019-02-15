@@ -14,6 +14,42 @@
 		.code{
 			font-family: monospace;
 		}
+		.ability{
+			font-family: inherit;
+			color: #bb00bb;
+		}
+		.ultimate{
+			font-family: inherit;
+			color: #ff00ff;
+		}
+		.special{
+			font-family: inherit;
+			color: #bdbd00;
+		}
+		.teammate{
+			font-family: inherit;
+			color: #00bb00;
+		}
+		.opponent{
+			font-family: inherit;
+			color: #bb0000;
+		}
+		.duration{
+			font-family: inherit;
+			color: #ff5500;
+		}
+		.modifier{
+			font-family: inherit;
+			color: #3377ff;
+		}
+		.comment{
+			font-family: inherit;
+			color: #888888;
+		}
+		.suffix{
+			font-family: inherit;
+			color: #00ffff;
+		}
 	</style>
 </head>
 
@@ -22,7 +58,7 @@
 	view specification at: <a href="https://github.com/iaace-NA/iLACS">https://github.com/iaace-NA/iLACS</a><br>
 	Input (iLACS): <span id="s1"></span><br><textarea name="input" id="i1" placeholder="Enter iLACS syntax here" rows="2" spellcheck="false" class="code" style="width:90%"></textarea><br>
 	<br>
-	Output (in plain english): <span id="s2"></span> <button id="b1">Force Translate (auto-translate activated)</button><br><textarea name="output" id="o1" rows="35" spellcheck="false" class="code" style="width:90%"></textarea><br>
+	Output (in plain english): <span id="s2"></span> <button id="b1">Force Translate (auto-translate activated)</button><br><pre id="o1" class="code" style="width:90%"></pre><br>
 	<div id="d1"></div>
 	<div id="d2"></div>
 	<script src="main.js"></script>

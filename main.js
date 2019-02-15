@@ -1,5 +1,5 @@
 /*
-v0.2.0
+v0.2.1
 */
 function strictParseInt(str) {
 	let ans = ""
@@ -10,7 +10,7 @@ function strictParseInt(str) {
 	}
 	return parseInt(ans);
 }
-const dictionary = {
+const normal_dictionary = {
 	normal_abilities: {
 		Q: "press Q",
 		W: "press W",
@@ -30,7 +30,6 @@ const dictionary = {
 		//SS: "summoner spell",
 		M: "MOVE",
 		K: "get a KILL",
-		"~": " (while) target is CC'd, ",
 		C: "CANCEL action",
 		X: "EXIT the game",
 		"\"": "TYPE in chat",
@@ -48,7 +47,7 @@ const dictionary = {
 		"&": " and simultaneously ",
 		"|": " or ",
 		"[": " (start casting)",
-		"]": "before the end of ",
+		"]": "before the cast ends on ",
 		"(": "optionally",
 		")": "end of option",
 		"{": ", finish casting, and during the spell's effects,",
@@ -67,13 +66,75 @@ const dictionary = {
 		",": ", miss,",
 		":": ", for all casts, ",
 		";": ", for any cast, ",
-		"'": " in range of "
+		"'": " in range of ",
+		"~": " (while) target is CC'd, ",
 	}
 };
-function decodeToEnglish(text) {//text is iLACS
+const html_dictionary = {
+	normal_abilities: {
+		Q: "press <span class=\"ability\">Q</span>",
+		W: "press <span class=\"ability\">W</span>",
+		E: "press <span class=\"ability\">E</span>",
+		R: "press <span class=\"ultimate\">R</span>"
+	},
+	special_abilities: {
+		I: "use <span class=\"special\">ITEM</span>",
+		V: "place <span class=\"special\">WARD</span>",
+		B: "activate <span class=\"special\">RECALL</span>",
+		P: "proc <span class=\"special\">PASSIVE</span>",
+		A: "auto <span class=\"special\">ATTACK</span>",
+		//AA: "auto attack",
+		//AM: "attack move",
+		F: "<span class=\"special\">FLASH</span>",
+		S: "use <span class=\"special\">SUMMONER SPELL</span>",
+		//SS: "summoner spell",
+		M: "<span class=\"special\">MOVE</span>",
+		K: "get a <span class=\"special\">KILL</span>",
+		C: "<span class=\"special\">CANCEL action</span>",
+		X: "<span class=\"special\">EXIT the game</span>",
+		"\"": "<span class=\"special\">TYPE in chat</span>",
+		G: "<span class=\"special\">SURRENDER</span>",
+		D: "<span class=\"special\">DIE</span>",
+		"%": "proc <span class=\"special\">RUNES</span>",
+		".": "use <span class=\"special\">STOP command</span>",
+		"?": "<span class=\"special\">PING</span>",
+		L: "go <span class=\"special\">AFK</span>"
+	},
+	syntax: {//potentially multi character
+		" ": " then\n",//end
+		"/": " <span class=\"modifier\">(spam), spam</span> ",
+		"*": ", <span class=\"modifier\">weave in order</span> with ",
+		"&": " <span class=\"modifier\">and simultaneously</span> ",
+		"|": " <span class=\"modifier\">or</span> ",
+		"[": " <span class=\"modifier\">(start casting)</span>",
+		"]": "before the <span class=\"modifier\">cast ends</span> on ",
+		"(": "<span class=\"modifier\">optionally</span>",
+		")": "end of option",
+		"{": ", <span class=\"modifier\">finish casting</span>, and <span class=\"modifier\">during the spell's effects</span>,",
+		"}": "before the <span class=\"modifier\">effects end</span> on ",
+		"+": " <span class=\"modifier\">(activate/turn on)</span>",
+		"-": " <span class=\"modifier\">(deactivate/turn off)</span>",
+		"$": " as <span class=\"modifier\">self cast</span>",
+		"#": " <span class=\"modifier\">normal cast</span>",
+		"=": " as <span class=\"modifier\">smart/quick cast</span>",
+		"@": " <span class=\"modifier\">at</span> ",
+		"!": "do <span class=\"modifier\">NOT</span> ",
+		"^": "<span class=\"modifier\">recommended:</span> ",
+		"T": " <span class=\"teammate\">Teammate</span> ",
+		"U": " <span class=\"modifier\">until</span> ",
+		"O": " <span class=\"opponent\">Opponent</span> ",
+		",": ", <span class=\"modifier\">miss</span>,",
+		":": ", <span class=\"modifier\">for <b>all</b> casts</span>, ",
+		";": ", <span class=\"modifier\">for <b>any</b> cast</span>, ",
+		"'": " <span class=\"modifier\">in range</span> of ",
+		"~": " (while) target is <span class=\"modifier\">CC'd</span>, ",
+	}
+};
+function decodeToEnglish(text, html = false) {//text is iLACS
 	let answer = "";
 	let tab_level = 0;
 	let holds = [];//abilities being held (array stack format)
+	const dictionary = html ? html_dictionary : normal_dictionary;
 	for (let i = 0; i < text.length; ++i) {
 		if (dictionary.normal_abilities[text[i]]) {
 			//start of an ability
@@ -103,7 +164,9 @@ function decodeToEnglish(text) {//text is iLACS
 					--i;
 				}
 				if (text[i] === "\"") {
-					answer += multiplyString("\t", 0) + " \"" + decodeComment(text.substring(i, text.indexOf("\"", i + 1) + 1), "\"") + "\"";
+					appendToAnswerHTML(multiplyString("\t", 0) + " \"")
+					answer += decodeComment(text.substring(i, text.indexOf("\"", i + 1) + 1), "\"", html);
+					appendToAnswerHTML("\"");
 					i = text.indexOf("\"", i + 1);
 				}
 			}
@@ -122,18 +185,29 @@ function decodeToEnglish(text) {//text is iLACS
 				holds.push(text.substring(last_space_index, i));
 			}
 			if (text[i] === "]" || text[i] === ")" || text[i] === "}") --tab_level;
-			if (text[i] === " ") answer += dictionary.syntax[text[i]] + multiplyString("\t", tab_level);
-			else if (text[i] === "]" || text[i] === ")" || text[i] === "}") answer += "\n" + multiplyString("\t", tab_level) + dictionary.syntax[text[i]] + holds.pop() + ".";
-			else if (text[i] === "/" && (dictionary.syntax[text[i + 1]] || i + 1 === text.length)) answer += " spam";
+			if (text[i] === " ") {
+				answer += dictionary.syntax[text[i]];
+				appendToAnswerHTML(multiplyString("\t", tab_level));
+			}
+			else if (text[i] === "]" || text[i] === ")" || text[i] === "}") {
+				appendToAnswerHTML("\n" + multiplyString("\t", tab_level));
+				answer += dictionary.syntax[text[i]];
+				appendToAnswerHTML(holds.pop() + ".");
+			}
+			else if (text[i] === "/" && (dictionary.syntax[text[i + 1]] || i + 1 === text.length)) {
+				if (html) answer += " <span class=\"modifier\">spam</span>";
+			}
 			else answer += dictionary.syntax[text[i]];
 			if (text[i] === "[" || text[i] === "(" || text[i] === "{") {
-				answer += dictionary.syntax[" "] + multiplyString("\t", tab_level);
+				answer += dictionary.syntax[" "];
+				appendToAnswerHTML(multiplyString("\t", tab_level));
 			}
 		}
 		else if (text[i] === "<") {//beginning of duration
 			let hold = true;//set to true if not a delay
 			if (i - 1 < 0 || text[i - 1] == " ") hold = false;//is a delay
-			answer += (hold ? "" : multiplyString("\t", tab_level)) + " " + decodeDuration(text.substring(i, text.indexOf(">", i + 1) + 1), hold);
+			appendToAnswerHTML((hold ? "" : multiplyString("\t", tab_level)) + " ");
+			answer += decodeDuration(text.substring(i, text.indexOf(">", i + 1) + 1), hold, html);
 			i = text.indexOf(">", i + 1);
 		}
 		/*
@@ -142,40 +216,50 @@ function decodeToEnglish(text) {//text is iLACS
 			i = text.indexOf(")", i + 1);
 		}*/
 		else if (text[i] === "_") {//beginning of a note/comment
-			answer += multiplyString("\t", 0) + " NOTE: " + decodeComment(text.substring(i, text.indexOf("_", i + 1) + 1), "_");
+			appendToAnswerHTML(multiplyString("\t", 0));
+			answer += " NOTE: " + decodeComment(text.substring(i, text.indexOf("_", i + 1) + 1), "_", html);
 			i = text.indexOf("_", i + 1);
 			if (text[i + 1] === " ") {
 				++i;//skip thens after comments if a comment is followed by a space
-				answer += "\n" + multiplyString("\t", tab_level);
+				appendToAnswerHTML("\n" + multiplyString("\t", tab_level));
 			}
 			else answer += " ";
 		}
 		else {
-			answer += text[i];
+			if (html) answer += "<span class=\"suffix\">";
+			appendToAnswerHTML(text[i]);
+			if (html) answer += "</span>";
 		}
 		if (tab_level < 0) throw new Error("misplaced square brackets");
 	}
 	if (tab_level !== 0) throw new Error("misplaced square brackets");
 	return answer;
+	function appendToAnswerHTML(new_string) {//escapes HTML specials
+		if (html) answer += new_string.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;").replace(/\t/g, "&#9;");
+		else answer += new_string;
+	}
 }
-function decodeDuration(text, hold) {
-	if (text == "<exp>") return "and hold until it expires.";
-	else if (text == "<max>") return "and keep for maximum duration.";
-	else if (text == "<min>") return "and keep for minimum duration.";
-	else if (text == "<cxl>") return "and hold while preparing to cancel.";
-	else if (text == "<>") return "and keep for any duration.";
+function decodeDuration(text, hold, html) {
+	let answer = "";
+	if (text == "<exp>") answer = "and hold until it expires.";
+	else if (text == "<max>") answer = "and keep for maximum duration.";
+	else if (text == "<min>") answer = "and keep for minimum duration.";
+	else if (text == "<cxl>") answer = "and hold while preparing to cancel.";
+	else if (text == "<>") answer = "and keep for any duration.";
 	else {
 		if (text[0] !== "<" || text[text.length - 1] !== ">") throw new Error("decodeDuration() invalid entry missing opening or closing angle brackets:\n" + text);
 		else {//opens and closes with angle brackets
 			const duration = parseFloat(text.substring(1, text.length - 1));
 			if (isNaN(duration)) throw new Error("decodeDuration() invalid duration:\n" + text);
 			else {
-				return (hold ? "and keep" : "wait") + " for " + duration + " seconds.";
+				answer = (hold ? "and keep" : "wait") + " for " + duration + " seconds.";
 			}
 		}
 	}
+	if (html) return "<span class=\"duration\">" + answer + "</span>";
+	else return answer;
 }
-function decodeTimeMarker(text) {
+function decodeTimeMarker(text) {//not currently used
 	if (text[0] !== "(" || text[text.length - 1] !== ")") throw new Error("decodeTimeMarker() invalid entry missing opening or closing parenthesis:\n" + text);
 	else {//opens and closes with parenthesis
 		const duration = parseFloat(text.substring(1, text.length - 1));
@@ -183,10 +267,11 @@ function decodeTimeMarker(text) {
 		else return "at " + duration + " seconds";
 	}
 }
-function decodeComment(text, surrounder) {
+function decodeComment(text, surrounder, html) {
 	if (text[0] !== surrounder || text[text.length - 1] !== surrounder) throw new Error("decodeComment() invalid entry missing opening or closing syntax:\n" + text);
 	else {//opens and closes with underscore
-		return text.substring(1, text.length - 1);
+		if (html) return "<span class=\"comment\">" + text.substring(1, text.length - 1) + "</span>";
+		else return text.substring(1, text.length - 1);
 	}
 }
 function multiplyString(text, num) {
@@ -202,13 +287,14 @@ if (document) {
 	updateWebsite();
 }
 function updateWebsite() {
-	document.getElementById('o1').value = decodeToEnglish(document.getElementById('i1').value);
+	document.getElementById('o1').innerHTML = decodeToEnglish(document.getElementById('i1').value, true);
+	const non_html_occ = decodeToEnglish(document.getElementById('i1').value, false).length;
 	const url = window.location.origin + window.location.pathname + "?input=" + encodeURIComponent(document.getElementById('i1').value);
 	document.getElementById('d1').innerHTML = "URL to current translation: <a href=\"" + url + "\">" + url + "</a>";
 	window.history.pushState({}, "", url);
 	document.getElementById('s1').innerHTML = document.getElementById('i1').value.length + " characters";
-	document.getElementById('s2').innerHTML = document.getElementById('o1').value.length + " characters";
-	document.getElementById('d2').innerHTML = ((document.getElementById('i1').value.length / document.getElementById('o1').value.length) * 100) + "% of original size&nbsp;&nbsp;&nbsp;&nbsp;" + (document.getElementById('o1').value.length / document.getElementById('i1').value.length) + "x more efficient";
+	document.getElementById('s2').innerHTML = non_html_occ + " characters";
+	document.getElementById('d2').innerHTML = ((document.getElementById('i1').value.length / non_html_occ) * 100) + "% of original size&nbsp;&nbsp;&nbsp;&nbsp;" + (non_html_occ / document.getElementById('i1').value.length) + "x more efficient";
 }
 function getParameterByName(name, url) {
 	if (!url) url = window.location.href;
