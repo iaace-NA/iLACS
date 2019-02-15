@@ -1,5 +1,5 @@
 /*
-v0.2.2
+v0.2.3
 */
 function strictParseInt(str) {
 	let ans = ""
@@ -203,18 +203,28 @@ function decodeToEnglish(text, html = false) {//text is iLACS
 				}
 				--i;
 				if (kill_count <= 5) {
-					answer += "get a " + ["DOUBLE", "TRIPLE", "QUADRA", "PENTA"][kill_count - 2] + " KILL";
+					answer += "get a ";
+					if (html) answer += "<span class=\"special\">";
+					answer += ["DOUBLE", "TRIPLE", "QUADRA", "PENTA"][kill_count - 2] + " KILL";
+					if (html) answer += "</span>";
 				}
-				else answer += "get " + kill_count + " KILLs";
+				else {
+					answer += "get ";
+					if (html) answer += "<span class=\"special\">";
+					answer += kill_count + " KILLs";
+					if (html) answer += " </span>";
+				}
 			}
 			else {
 				answer += dictionary.special_abilities[text[i]];
 				if (text[i] === "?" && text[i + 1] === "?") {
+					if (html) answer += "<span class=\"special\">";
 					while (text[i] === "?") {
 						++i;
 						answer += " MIA";
 					}
 					--i;
+					if (html) answer += "</span>";
 				}
 				if (text[i] === "\"") {
 					appendToAnswerHTML(multiplyString("\t", 0));
