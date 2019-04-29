@@ -38,7 +38,8 @@ const normal_dictionary = {
 		"%": "proc RUNES",
 		".": "use STOP command",
 		"?": "PING",
-		L: "go AFK"
+		L: "go AFK",
+		Y: "move CAMERA to"
 	},
 	syntax: {//potentially multi character
 		" ": " then\n",//end
@@ -58,7 +59,7 @@ const normal_dictionary = {
 		"#": " normal cast",
 		"=": " as smart/quick cast",
 		"@": " at ",
-		"!": "do NOT ",
+		"!": "(do) NOT ",
 		"^": "recommended: ",
 		"T": " Teammate ",
 		"U": " until ",
@@ -98,7 +99,8 @@ const html_dictionary = {
 		"%": "proc <span class=\"special\">RUNES</span>",
 		".": "use <span class=\"special\">STOP command</span>",
 		"?": "<span class=\"special\">PING</span>",
-		L: "go <span class=\"special\">AFK</span>"
+		L: "go <span class=\"special\">AFK</span>",
+		Y: "<span class=\"special\">move CAMERA</span> to "
 	},
 	syntax: {//potentially multi character
 		" ": " then\n",//end
@@ -118,7 +120,7 @@ const html_dictionary = {
 		"#": " <span class=\"modifier\">normal cast</span>",
 		"=": " as <span class=\"modifier\">smart/quick cast</span>",
 		"@": " <span class=\"modifier\">at</span> ",
-		"!": "do <span class=\"modifier\">NOT</span> ",
+		"!": "(do) <span class=\"modifier\">NOT</span> ",
 		"^": "<span class=\"modifier\">recommended:</span> ",
 		"T": " <span class=\"teammate\">Teammate</span> ",
 		"U": " <span class=\"modifier\">until</span> ",

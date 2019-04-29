@@ -1,5 +1,5 @@
 ![iLACS logo](logo_rectangular.png)
-# Specification for iaace's League Ability Combo Syntax (iLACS) v0.2.3
+# Specification for iaace's League Ability Combo Syntax (iLACS) v0.3.1
 translator located at https://ilacs.iaace.gg/<br>
 standard for describing ability combos in League of Legends (LoL)
 ## Normal Abilities
@@ -34,6 +34,7 @@ standard for describing ability combos in League of Legends (LoL)
 - `G`: forfeit (/ff, /surrender)
 - `C`: cancel action
 - `.`: stop command
+- `Y`: move camera
 - `?`: ping map
 - `??`: MIA ping
 - `????????`: MIA ping
@@ -113,6 +114,7 @@ standard for describing ability combos in League of Legends (LoL)
 
 - WQ animation cancel yasuo: `Q1 Q2 W[Q3]`
 - beyblade yasuo: `Q1 Q2 E[Q3[F]]`
+- instant beyblade yasuo: `Q1 Q2 E<min>[Q3<min>[F]]`
 - airblade yasuo: `Q1 Q2 Q3{E[Q1[R]]} Q2`
 - keyblade yasuo: `Q1 Q2 E[Q3[F A E[Q1[R]]]] Q2 Q3`
 - keyblade yasuo v2: `Q1 Q2 E<cxl>[Q3<cxl>[F]] A E<cxl>[Q1<cxl>[R]] Q2 Q3`
