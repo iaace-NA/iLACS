@@ -119,5 +119,6 @@ standard for describing ability combos in League of Legends (LoL)
 - keyblade yasuo: `Q1 Q2 E[Q3[F A E[Q1[R]]]] Q2 Q3`
 - keyblade yasuo v2: `Q1 Q2 E<cxl>[Q3<cxl>[F]] A E<cxl>[Q1<cxl>[R]] Q2 Q3`
 - yasuo korean EQB: `E[Q;[B<cxl>[M]]]`
+- yasuo camera combo: `Y$ E<cxl>[YT Q1[Y$]] <0>_Q2 CD is cancelled_ Q2<> Q3`
 
 - Faker vs Ryu: `OA OIbork OA[OSignite] Iyoumuu R1<min>[E,]{OR1[OW1[R2 OE,]] Iqss OW2 Q OA<cxl>[F COA,] OQ, Signite} OF OA<cxl>[W1[W2{COA, E}]] OD&K`
