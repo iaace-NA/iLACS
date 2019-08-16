@@ -1,5 +1,5 @@
 /*
-v0.2.3
+v1.0.0
 */
 function strictParseInt(str) {
 	let ans = ""

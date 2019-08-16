@@ -1,5 +1,5 @@
 ![iLACS logo](logo_rectangular.png)
-# Specification for iaace's League Ability Combo Syntax (iLACS) v0.3.0
+# Specification for iaace's League Ability Combo Syntax (iLACS) v1.0.0
 translator located at https://ilacs.iaace.gg/<br>
 standard for describing ability combos in League of Legends (LoL)<br>
 public domain
