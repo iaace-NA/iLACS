@@ -1,4 +1,5 @@
 ![iLACS logo](logo_rectangular.png)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fiaace-NA%2FiLACS.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fiaace-NA%2FiLACS?ref=badge_shield)
 # Specification for iaace's League Ability Combo Syntax (iLACS) v1.0.0
 translator located at https://ilacs.iaace.gg/<br>
 standard for describing ability combos in League of Legends (LoL)<br>
@@ -123,3 +124,7 @@ public domain
 - yasuo camera combo: `Y$ E<cxl>[YT Q1[Y$]] <0>_Q2 CD is cancelled_ Q2<> Q3`
 
 - Faker vs Ryu: `OA OIbork OA[OSignite] Iyoumuu R1<min>[E,]{OR1[OW1[R2 OE,]] Iqss OW2 Q OA<cxl>[F COA,] OQ, Signite} OF OA<cxl>[W1[W2{COA, E}]] OD&K`
+
+
+## License
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fiaace-NA%2FiLACS.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fiaace-NA%2FiLACS?ref=badge_large)
